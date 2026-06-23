@@ -1,0 +1,36 @@
+---
+// Approach strip renders the compact three-pillar row used on the About page.
+import ApproachPill from '../molecules/ApproachPill.astro';
+
+interface Props {
+	items: { title: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="approach-strip">
+	<div class="container">
+		<p class="small-label">My Approach</p>
+		<div class="approach-strip__grid">
+			{
+				items.map((item) => (
+					<ApproachPill title={item.title} />
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.approach-strip {
+		padding-bottom: clamp(1.6rem, 4vw, 2.8rem);
+	}
+
+	.approach-strip__grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(0.8rem, 2vw, 2rem);
+		padding-top: 0.7rem;
+	}
+</style>

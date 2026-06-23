@@ -1,0 +1,39 @@
+---
+// How-to-work section presents three offer cards at the bottom of the About page.
+import type { WorkItem } from '../../data/about';
+import WorkWithCard from '../molecules/WorkWithCard.astro';
+
+interface Props {
+	items: WorkItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="how-to-work">
+	<div class="container">
+		<p class="small-label">How To Work With Me</p>
+		<div class="how-to-work__grid">
+			{items.map((item) => <WorkWithCard item={item} />)}
+		</div>
+	</div>
+</section>
+
+<style>
+	.how-to-work {
+		padding-block: clamp(1.8rem, 4vw, 3rem);
+	}
+
+	.how-to-work__grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+		padding-top: 0.8rem;
+	}
+
+	@media (min-width: 760px) {
+		.how-to-work__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+</style>

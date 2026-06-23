@@ -1,0 +1,83 @@
+---
+// Approach organism combines lifestyle copy, imagery, and three coaching pillars.
+import TextBlock from '../atoms/TextBlock.astro';
+import ButtonBase from '../atoms/ButtonBase.astro';
+import ApproachPill from '../molecules/ApproachPill.astro';
+
+interface Props {
+	image: string;
+	imageAlt: string;
+	items: { title: string }[];
+}
+
+const { image, imageAlt, items } = Astro.props;
+---
+
+<section class="approach section-gap">
+	<div class="container approach__intro-grid">
+		<div class="approach__copy">
+			<h2>A simple, grounded, and mindful approach to feeling more peace and presence is closer than you think.</h2>
+			<TextBlock
+				text="Through realistic, body-first coaching, you can shift your routines into steady rituals that support how you want to live."
+			/>
+			<ButtonBase href="#book" label="Learn More About Me" variant="light" />
+		</div>
+		<img src={image} alt={imageAlt} loading="lazy" />
+	</div>
+	<div class="container approach__method">
+		<p class="small-label">My Approach</p>
+		<div class="approach__pill-grid">
+			{
+				items.map((item) => (
+					<ApproachPill title={item.title} />
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.approach__intro-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.3rem;
+	}
+
+	.approach__copy {
+		display: grid;
+		align-content: center;
+		gap: 1rem;
+	}
+
+	.approach__copy h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+		line-height: 1;
+		font-weight: 500;
+	}
+
+	.approach__intro-grid img {
+		width: 100%;
+		height: 100%;
+		min-height: 300px;
+		object-fit: cover;
+	}
+
+	.approach__method {
+		padding-top: clamp(2rem, 5vw, 3.2rem);
+	}
+
+	.approach__pill-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(0.8rem, 2vw, 2rem);
+		padding-top: 0.8rem;
+	}
+
+	@media (min-width: 860px) {
+		.approach__intro-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>

@@ -1,0 +1,95 @@
+---
+// Landing template orchestrates all organisms and receives plain content objects from the page.
+import type { BlogItem, NavItem, ServiceItem } from '../../data/landing';
+import SiteHeader from '../organisms/SiteHeader.astro';
+import HeroSection from '../organisms/HeroSection.astro';
+import CoachingSplitSection from '../organisms/CoachingSplitSection.astro';
+import ServicesListSection from '../organisms/ServicesListSection.astro';
+import ApproachSection from '../organisms/ApproachSection.astro';
+import TestimonialSection from '../organisms/TestimonialSection.astro';
+import GuidanceBlogSection from '../organisms/GuidanceBlogSection.astro';
+import FooterBannerSection from '../organisms/FooterBannerSection.astro';
+import SiteFooter from '../organisms/SiteFooter.astro';
+
+interface Props {
+	navItems: NavItem[];
+	heroData: {
+		image: string;
+		imageAlt: string;
+		title: string;
+		description: string;
+		ctaLabel: string;
+		ctaHref: string;
+	};
+	coachingData: {
+		image: string;
+		imageAlt: string;
+		title: string;
+		description: string;
+		secondary: string;
+	};
+	servicesIntro: {
+		title: string;
+		description: string;
+	};
+	services: ServiceItem[];
+	approachItems: { title: string }[];
+	testimonial: {
+		quote: string;
+		author: string;
+	};
+	guidanceData: {
+		title: string;
+		description: string;
+		ctaLabel: string;
+		ctaHref: string;
+	};
+	blogItems: BlogItem[];
+	footerBannerData: {
+		title: string;
+		description: string;
+		ctaLabel: string;
+		ctaHref: string;
+		image: string;
+		imageAlt: string;
+	};
+	footerData: {
+		name: string;
+		founder: string;
+		email: string;
+		instagram: string;
+	};
+}
+
+const {
+	navItems,
+	heroData,
+	coachingData,
+	servicesIntro,
+	services,
+	approachItems,
+	testimonial,
+	guidanceData,
+	blogItems,
+	footerBannerData,
+	footerData
+} = Astro.props;
+---
+
+<SiteHeader navItems={navItems} />
+<main>
+	<HeroSection {...heroData} />
+	<CoachingSplitSection {...coachingData} />
+	<ServicesListSection title={servicesIntro.title} description={servicesIntro.description} services={services} />
+	<ApproachSection image={heroData.image} imageAlt={heroData.imageAlt} items={approachItems} />
+	<TestimonialSection quote={testimonial.quote} author={testimonial.author} />
+	<GuidanceBlogSection
+		title={guidanceData.title}
+		description={guidanceData.description}
+		ctaLabel={guidanceData.ctaLabel}
+		ctaHref={guidanceData.ctaHref}
+		items={blogItems}
+	/>
+	<FooterBannerSection {...footerBannerData} />
+</main>
+<SiteFooter {...footerData} />

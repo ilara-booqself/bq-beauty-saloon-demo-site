@@ -1,0 +1,34 @@
+---
+// Page entrypoint receives structured content and passes it to the landing template.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LandingTemplate from '../components/templates/LandingTemplate.astro';
+import {
+	approachItems,
+	blogItems,
+	coachingData,
+	footerBannerData,
+	footerData,
+	guidanceData,
+	heroData,
+	navItems,
+	services,
+	servicesIntro,
+	testimonial
+} from '../data/landing';
+---
+
+<BaseLayout>
+	<LandingTemplate
+		navItems={navItems}
+		heroData={heroData}
+		coachingData={coachingData}
+		servicesIntro={servicesIntro}
+		services={services}
+		approachItems={approachItems}
+		testimonial={testimonial}
+		guidanceData={guidanceData}
+		blogItems={blogItems}
+		footerBannerData={footerBannerData}
+		footerData={footerData}
+	/>
+</BaseLayout>

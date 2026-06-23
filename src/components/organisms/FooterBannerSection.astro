@@ -1,0 +1,85 @@
+---
+// Footer banner organism creates the final visual CTA over a full-width photo.
+import ButtonBase from '../atoms/ButtonBase.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	ctaLabel: string;
+	ctaHref: string;
+	image: string;
+	imageAlt: string;
+}
+
+const { title, description, ctaLabel, ctaHref, image, imageAlt } = Astro.props;
+---
+
+<section id="book" class="footer-banner">
+	<img src={image} alt={imageAlt} loading="lazy" />
+	<div class="footer-banner__arc" aria-hidden="true"></div>
+	<div class="footer-banner__overlay">
+		<div class="container footer-banner__content">
+			<h2>{title}</h2>
+			<p>{description}</p>
+			<ButtonBase href={ctaHref} label={ctaLabel} variant="dark" />
+		</div>
+	</div>
+</section>
+
+<style>
+	.footer-banner {
+		position: relative;
+		min-height: clamp(230px, 32vw, 330px);
+		overflow: hidden;
+	}
+
+	.footer-banner img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.footer-banner__arc {
+		position: absolute;
+		left: 50%;
+		top: 56%;
+		translate: -50% -50%;
+		width: min(78vw, 860px);
+		height: min(78vw, 860px);
+		border-radius: 50%;
+		border: 1px solid color-mix(in srgb, var(--color-cream) 74%, transparent);
+		z-index: 1;
+	}
+
+	.footer-banner__overlay {
+		position: relative;
+		z-index: 2;
+		min-height: inherit;
+		display: grid;
+		align-items: center;
+		background: linear-gradient(90deg, color-mix(in srgb, #111 58%, transparent) 0%, transparent 62%);
+	}
+
+	.footer-banner__content {
+		display: grid;
+		gap: 0.72rem;
+		max-width: 350px;
+		color: var(--color-cream-strong);
+	}
+
+	.footer-banner h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.65rem, 3vw, 2.45rem);
+		font-weight: 500;
+		line-height: 0.92;
+	}
+
+	.footer-banner p {
+		margin: 0;
+		line-height: 1.5;
+		font-size: 0.75rem;
+	}
+</style>

@@ -1,0 +1,94 @@
+---
+// Site footer organism consolidates contact details and quick links.
+import LogoMark from '../atoms/LogoMark.astro';
+
+interface Props {
+	name: string;
+	founder: string;
+	email: string;
+	instagram: string;
+}
+
+const { name, founder, email, instagram } = Astro.props;
+---
+
+<footer class="site-footer">
+	<div class="container site-footer__inner">
+		<div class="site-footer__card">
+			<p class="small-label">{founder}</p>
+			<a href={`mailto:${email}`}>{email}</a>
+			<p>{instagram}</p>
+		</div>
+		<div class="site-footer__brand">
+			<LogoMark compact />
+			<p>{name} for women who want calm, clear, grounded living.</p>
+		</div>
+		<nav class="site-footer__links" aria-label="Footer links">
+			<a href="#top">Home</a>
+			<a href="#guidance">Blog</a>
+			<a href="#services">About</a>
+			<a href="#book">Contact</a>
+			<a href="#services">Services</a>
+			<a href="#client-love">Client Love</a>
+		</nav>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		padding-block: clamp(2rem, 4vw, 3rem);
+	}
+
+	.site-footer__inner {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.3rem;
+		align-items: start;
+	}
+
+	.site-footer__card {
+		background: #d9ccb0;
+		padding: 1rem;
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	.site-footer__card a,
+	.site-footer__card p {
+		margin: 0;
+		font-size: 0.84rem;
+	}
+
+	.site-footer__brand {
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	.site-footer__brand p {
+		margin: 0;
+		color: var(--color-muted);
+	}
+
+	.site-footer__links {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.6rem;
+	}
+
+	.site-footer__links a {
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		font-weight: 600;
+	}
+
+	@media (min-width: 860px) {
+		.site-footer__inner {
+			grid-template-columns: 220px minmax(0, 1fr) 260px;
+		}
+
+		.site-footer__links {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>

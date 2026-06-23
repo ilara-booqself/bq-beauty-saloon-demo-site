@@ -1,0 +1,27 @@
+---
+// This atom keeps navigation link styling consistent across desktop and mobile contexts.
+interface Props {
+	href: string;
+	label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<a class="nav-link" href={href}>{label}</a>
+
+<style>
+	.nav-link {
+		font-size: 0.5rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		font-weight: 600;
+		color: var(--color-olive-700);
+		transition: color 180ms ease;
+	}
+
+	.nav-link:hover,
+	.nav-link:focus-visible {
+		color: var(--color-ink);
+	}
+</style>

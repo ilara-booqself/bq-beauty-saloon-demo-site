@@ -1,0 +1,91 @@
+---
+// About quote section highlights social proof over a textured background image.
+interface Props {
+	image: string;
+	imageAlt: string;
+	quote: string;
+	author: string;
+}
+
+const { image, imageAlt, quote, author } = Astro.props;
+---
+
+<section class="about-quote">
+	<img src={image} alt={imageAlt} loading="lazy" />
+	<div class="about-quote__overlay">
+		<div class="about-quote__arc" aria-hidden="true"></div>
+		<div class="container about-quote__content">
+			<blockquote>
+				<p>{quote}</p>
+				<cite>{author}</cite>
+			</blockquote>
+		</div>
+	</div>
+</section>
+
+<style>
+	.about-quote {
+		position: relative;
+		min-height: clamp(230px, 34vw, 360px);
+		overflow: hidden;
+	}
+
+	.about-quote img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.about-quote__overlay {
+		position: relative;
+		z-index: 1;
+		min-height: inherit;
+		display: grid;
+		align-items: center;
+		background: linear-gradient(180deg, color-mix(in srgb, #181711 36%, transparent), color-mix(in srgb, #181711 45%, transparent));
+	}
+
+	.about-quote__arc {
+		position: absolute;
+		left: 50%;
+		top: 54%;
+		translate: -50% -50%;
+		width: min(86vw, 980px);
+		height: min(86vw, 980px);
+		border-radius: 50%;
+		border: 1px solid color-mix(in srgb, var(--color-cream) 70%, transparent);
+	}
+
+	.about-quote__content {
+		position: relative;
+		z-index: 2;
+	}
+
+	.about-quote blockquote {
+		margin: 0;
+		text-align: center;
+		display: grid;
+		gap: 0.8rem;
+		justify-items: center;
+	}
+
+	.about-quote p {
+		margin: 0;
+		max-width: 52ch;
+		font-family: var(--font-display);
+		font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+		line-height: 1.03;
+		font-style: italic;
+		color: var(--color-cream-strong);
+	}
+
+	.about-quote cite {
+		font-size: 0.72rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		font-style: normal;
+		color: var(--color-cream-strong);
+	}
+</style>

@@ -1,0 +1,42 @@
+---
+// Services organism renders introduction copy and each service tile.
+import type { ServiceItem } from '../../data/landing';
+import Heading from '../atoms/Heading.astro';
+import TextBlock from '../atoms/TextBlock.astro';
+import ServiceTile from '../molecules/ServiceTile.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	services: ServiceItem[];
+}
+
+const { title, description, services } = Astro.props;
+---
+
+<section id="services" class="services section-gap">
+	<div class="container services__intro">
+		<Heading title={title} />
+		<TextBlock text={description} />
+	</div>
+	<div class="container">
+		{
+			services.map((service, index) => (
+				<ServiceTile service={service} order={index + 1} />
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.services {
+		padding-top: clamp(3rem, 7vw, 6rem);
+	}
+
+	.services__intro {
+		display: grid;
+		gap: 1rem;
+		max-width: 860px;
+		margin-bottom: clamp(1.6rem, 3vw, 2.6rem);
+	}
+</style>

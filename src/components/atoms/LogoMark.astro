@@ -1,0 +1,27 @@
+---
+// The logo mark is intentionally simple so it can be reused in both header and footer.
+interface Props {
+	compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<a class={`logo ${compact ? 'logo--compact' : ''}`} href="#top" aria-label="GlowHaus Beauty Salon home">
+	<span class="logo__text">GlowHaus Beauty Salon</span>
+</a>
+
+<style>
+	.logo {
+		display: inline-flex;
+		font-family: var(--font-display);
+		font-size: clamp(1.15rem, 1.4vw, 1.5rem);
+		font-style: italic;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+	}
+
+	.logo--compact {
+		font-size: 1.45rem;
+	}
+</style>

@@ -1,0 +1,55 @@
+---
+// Guidance organism shows section intro and a three-column blog preview grid.
+import type { BlogItem } from '../../data/landing';
+import Heading from '../atoms/Heading.astro';
+import TextBlock from '../atoms/TextBlock.astro';
+import ButtonBase from '../atoms/ButtonBase.astro';
+import BlogCard from '../molecules/BlogCard.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	ctaLabel: string;
+	ctaHref: string;
+	items: BlogItem[];
+}
+
+const { title, description, ctaLabel, ctaHref, items } = Astro.props;
+---
+
+<section id="guidance" class="guidance section-gap">
+	<div class="container guidance__intro">
+		<Heading title={title} align="center" />
+		<TextBlock text={description} align="center" />
+		<ButtonBase href={ctaHref} label={ctaLabel} variant="light" />
+	</div>
+	<div class="container guidance__grid">
+		{
+			items.map((item) => (
+				<BlogCard item={item} />
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.guidance__intro {
+		display: grid;
+		justify-items: center;
+		gap: 1rem;
+		max-width: 780px;
+		margin-bottom: clamp(2rem, 4vw, 3.2rem);
+	}
+
+	.guidance__grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.2rem;
+	}
+
+	@media (min-width: 760px) {
+		.guidance__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+</style>

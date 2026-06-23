@@ -1,0 +1,73 @@
+---
+// Meet section deepens the founder story and repeats the shared booking CTA.
+import BookButton from '../atoms/BookButton.vue';
+
+interface Props {
+	label: string;
+	title: string;
+	description: string;
+	image: string;
+	imageAlt: string;
+}
+
+const { label, title, description, image, imageAlt } = Astro.props;
+---
+
+<section class="about-meet section-gap">
+	<div class="container about-meet__inner">
+		<div class="about-meet__copy">
+			<p class="small-label">{label}</p>
+			<h2>{title}</h2>
+			<p>{description}</p>
+			<BookButton client:idle href="#book" />
+		</div>
+		<img src={image} alt={imageAlt} loading="lazy" />
+	</div>
+</section>
+
+<style>
+	.about-meet {
+		padding-bottom: clamp(2rem, 4vw, 3rem);
+	}
+
+	.about-meet__inner {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.2rem;
+	}
+
+	.about-meet__copy {
+		display: grid;
+		align-content: center;
+		gap: 0.78rem;
+	}
+
+	.about-meet h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 3vw, 2.75rem);
+		line-height: 0.95;
+		font-weight: 500;
+	}
+
+	.about-meet p {
+		margin: 0;
+		font-size: 0.74rem;
+		line-height: 1.58;
+		color: var(--color-muted);
+		max-width: 45ch;
+	}
+
+	.about-meet img {
+		width: 100%;
+		height: 100%;
+		min-height: 260px;
+		object-fit: cover;
+	}
+
+	@media (min-width: 860px) {
+		.about-meet__inner {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>

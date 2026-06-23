@@ -1,0 +1,36 @@
+---
+// Presence intro organism highlights the primary promise below the hero.
+import Heading from '../atoms/Heading.astro';
+import TextBlock from '../atoms/TextBlock.astro';
+import ButtonBase from '../atoms/ButtonBase.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	ctaLabel: string;
+	ctaHref: string;
+}
+
+const { title, description, ctaLabel, ctaHref } = Astro.props;
+---
+
+<section class="presence-intro">
+	<div class="container presence-intro__inner">
+		<Heading tag="h2" title={title} align="center" />
+		<TextBlock text={description} align="center" />
+		<ButtonBase href={ctaHref} label={ctaLabel} variant="light" />
+	</div>
+</section>
+
+<style>
+	.presence-intro {
+		padding-bottom: clamp(3rem, 6vw, 5rem);
+	}
+
+	.presence-intro__inner {
+		display: grid;
+		justify-items: center;
+		gap: 1.2rem;
+		max-width: 780px;
+	}
+</style>

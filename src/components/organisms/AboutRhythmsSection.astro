@@ -1,0 +1,34 @@
+---
+// Rhythms section combines intro copy and a list of personal rhythm cards.
+import type { RhythmItem } from '../../data/about';
+import Heading from '../atoms/Heading.astro';
+import TextBlock from '../atoms/TextBlock.astro';
+import AboutRhythmCard from '../molecules/AboutRhythmCard.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	items: RhythmItem[];
+}
+
+const { title, description, items } = Astro.props;
+---
+
+<section class="about-rhythms section-gap">
+	<div class="container about-rhythms__intro">
+		<Heading title={title} align="center" />
+		<TextBlock text={description} align="center" />
+	</div>
+	<div class="container">
+		{items.map((item) => <AboutRhythmCard item={item} />)}
+	</div>
+</section>
+
+<style>
+	.about-rhythms__intro {
+		display: grid;
+		justify-items: center;
+		gap: 0.8rem;
+		margin-bottom: clamp(1.8rem, 4vw, 2.8rem);
+	}
+</style>

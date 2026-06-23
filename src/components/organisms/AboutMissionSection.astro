@@ -1,0 +1,59 @@
+---
+// Mission section renders a wide neutral strip with purpose statement and mission context.
+interface Props {
+	left: string;
+	rightLabel: string;
+	right: string;
+}
+
+const { left, rightLabel, right } = Astro.props;
+---
+
+<section class="mission">
+	<div class="container mission__inner">
+		<p class="mission__left">{left}</p>
+		<div class="mission__right">
+			<p class="small-label">{rightLabel}</p>
+			<p>{right}</p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.mission {
+		background: #d8ccb1;
+		padding-block: clamp(1.8rem, 4vw, 2.8rem);
+	}
+
+	.mission__inner {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+
+	.mission__left {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.65rem, 2.4vw, 2.25rem);
+		line-height: 0.97;
+	}
+
+	.mission__right {
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.mission__right p {
+		margin: 0;
+		font-size: 0.74rem;
+		line-height: 1.58;
+		max-width: 45ch;
+	}
+
+	@media (min-width: 860px) {
+		.mission__inner {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.8rem;
+		}
+	}
+</style>

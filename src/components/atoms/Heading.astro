@@ -1,0 +1,35 @@
+---
+// Heading atom controls hierarchy and optional accent text styling.
+interface Props {
+	tag?: 'h1' | 'h2' | 'h3';
+	title: string;
+	accent?: string;
+	align?: 'left' | 'center';
+}
+
+const { tag = 'h2', title, accent, align = 'left' } = Astro.props;
+const Tag = tag;
+---
+
+<Tag class={`heading heading--${align}`}>
+	{title}
+	{accent && <span class="heading__accent"> {accent}</span>}
+</Tag>
+
+<style>
+	.heading {
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 3.4vw, 3.35rem);
+		line-height: 0.92;
+		font-weight: 500;
+		margin: 0;
+	}
+
+	.heading--center {
+		text-align: center;
+	}
+
+	.heading__accent {
+		font-style: italic;
+	}
+</style>

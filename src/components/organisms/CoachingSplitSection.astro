@@ -1,0 +1,33 @@
+---
+// Coaching organism uses the split card molecule for the primary offer explanation.
+import SplitContentCard from '../molecules/SplitContentCard.astro';
+
+interface Props {
+	image: string;
+	imageAlt: string;
+	title: string;
+	description: string;
+	secondary: string;
+}
+
+const { image, imageAlt, title, description, secondary } = Astro.props;
+---
+
+<section class="coaching-split section-gap">
+	<div class="container">
+		<SplitContentCard
+			image={image}
+			imageAlt={imageAlt}
+			title={title}
+			description={description}
+			secondary={secondary}
+			theme="dark"
+		/>
+	</div>
+</section>
+
+<style>
+	.coaching-split {
+		padding-top: 0;
+	}
+</style>

@@ -1,0 +1,43 @@
+---
+// Header navigation molecule groups static links with the interactive Vue booking button.
+import type { NavItem } from '../../data/landing';
+import NavLink from '../atoms/NavLink.astro';
+import BookButton from '../atoms/BookButton.vue';
+
+interface Props {
+	links: NavItem[];
+}
+
+const { links } = Astro.props;
+---
+
+<nav class="header-nav" aria-label="Primary">
+	<div class="header-nav__links">
+		{
+			links.map((link) => (
+				<NavLink href={link.href} label={link.label} />
+			))
+		}
+	</div>
+	<BookButton client:idle href="#book" isWidgetTrigger />
+</nav>
+
+<style>
+	.header-nav {
+		display: flex;
+		align-items: center;
+		gap: clamp(0.8rem, 2vw, 1.2rem);
+	}
+
+	.header-nav__links {
+		display: none;
+		align-items: center;
+		gap: clamp(0.6rem, 1.5vw, 1.1rem);
+	}
+
+	@media (min-width: 760px) {
+		.header-nav__links {
+			display: flex;
+		}
+	}
+</style>

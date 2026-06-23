@@ -1,0 +1,26 @@
+---
+// Text atom provides shared paragraph spacing and readable line length.
+interface Props {
+	text: string;
+	align?: 'left' | 'center';
+}
+
+const { text, align = 'left' } = Astro.props;
+---
+
+<p class={`text-block text-block--${align}`}>{text}</p>
+
+<style>
+	.text-block {
+		margin: 0;
+		font-size: 0.98rem;
+		line-height: 1.7;
+		color: var(--color-muted);
+	}
+
+	.text-block--center {
+		text-align: center;
+		margin-inline: auto;
+		max-width: 64ch;
+	}
+</style>

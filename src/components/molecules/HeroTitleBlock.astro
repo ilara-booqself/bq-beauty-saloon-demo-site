@@ -1,0 +1,43 @@
+---
+// Hero title molecule keeps heading, supporting copy, and CTA grouped for reusability.
+import Heading from '../atoms/Heading.astro';
+import TextBlock from '../atoms/TextBlock.astro';
+import BookButton from '../atoms/BookButton.vue';
+
+interface Props {
+	title: string;
+	description: string;
+	ctaLabel: string;
+	ctaHref: string;
+}
+
+const { title, description, ctaLabel, ctaHref } = Astro.props;
+---
+
+<div class="hero-title-block">
+	<Heading tag="h1" title={title} align="center" />
+	<TextBlock text={description} align="center" />
+	<div class="hero-title-block__cta">
+		<BookButton client:idle href={ctaHref} label={ctaLabel} />
+	</div>
+</div>
+
+<style>
+	.hero-title-block {
+		display: grid;
+		justify-items: center;
+		gap: 1rem;
+		max-width: 660px;
+		margin-inline: auto;
+	}
+
+	.hero-title-block__cta {
+		padding-top: 0.2rem;
+	}
+
+	.hero-title-block :global(.text-block) {
+		font-size: 0.75rem;
+		line-height: 1.55;
+		max-width: 54ch;
+	}
+</style>

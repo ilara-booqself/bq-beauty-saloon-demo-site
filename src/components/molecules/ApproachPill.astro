@@ -1,0 +1,40 @@
+---
+// Approach pill molecule presents one coaching pillar in the method row.
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="approach-pill">
+	<div class="approach-pill__icon" aria-hidden="true"></div>
+	<p>{title}</p>
+</div>
+
+<style>
+	.approach-pill {
+		display: grid;
+		justify-items: center;
+		gap: 0.8rem;
+	}
+
+	.approach-pill__icon {
+		width: 30px;
+		height: 48px;
+		border-radius: 14px;
+		background: #c6b694;
+	}
+
+	.approach-pill p {
+		margin: 0;
+		font-size: 0.68rem;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		font-weight: 600;
+		border-top: 1px solid color-mix(in srgb, var(--color-ink) 22%, transparent);
+		padding-top: 0.66rem;
+		width: 100%;
+		text-align: center;
+	}
+</style>

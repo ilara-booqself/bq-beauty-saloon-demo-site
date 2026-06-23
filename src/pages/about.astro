@@ -1,0 +1,32 @@
+---
+// About page entrypoint loads About-specific content and passes it to the page template.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AboutTemplate from '../components/templates/AboutTemplate.astro';
+import {
+	aboutHeroData,
+	aboutQuoteData,
+	credentialsData,
+	meetData,
+	missionData,
+	rhythmItems,
+	rhythmsIntro,
+	workItems
+} from '../data/about';
+import { approachItems, footerData, navItems } from '../data/landing';
+---
+
+<BaseLayout title="About | GlowHaus Beauty Salon" description="Meet Sally and explore her intentional wellness philosophy.">
+	<AboutTemplate
+		navItems={navItems}
+		aboutHeroData={aboutHeroData}
+		missionData={missionData}
+		meetData={meetData}
+		approachItems={approachItems}
+		aboutQuoteData={aboutQuoteData}
+		credentialsData={credentialsData}
+		rhythmsIntro={rhythmsIntro}
+		rhythmItems={rhythmItems}
+		workItems={workItems}
+		footerData={footerData}
+	/>
+</BaseLayout>

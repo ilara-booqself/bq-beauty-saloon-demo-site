@@ -1,0 +1,21 @@
+:root {
+	--color-cream: #f6f0df;
+	--color-cream-strong: #e5dac1;
+	--color-olive-900: #222117;
+	--color-olive-700: #3a3828;
+	--color-ink: #252218;
+	--color-muted: #6f674f;
+	--color-button: #1f1d15;
+	--color-button-text: #f4ecd8;
+	--container-max: 980px;
+	--space-xs: 0.5rem;
+	--space-sm: 0.75rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+	--space-xl: 2rem;
+	--space-2xl: 3rem;
+	--radius-sm: 2px;
+	--radius-md: 8px;
+	--font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+	--font-body: 'Manrope', 'Segoe UI', sans-serif;
+}

@@ -1,0 +1,92 @@
+---
+// About template composes all About-page organisms in the same visual system as the landing page.
+import type { NavItem } from '../../data/landing';
+import type { RhythmItem, WorkItem } from '../../data/about';
+import SiteHeader from '../organisms/SiteHeader.astro';
+import AboutHeroSection from '../organisms/AboutHeroSection.astro';
+import AboutMissionSection from '../organisms/AboutMissionSection.astro';
+import AboutMeetSection from '../organisms/AboutMeetSection.astro';
+import ApproachStripSection from '../organisms/ApproachStripSection.astro';
+import AboutQuoteSection from '../organisms/AboutQuoteSection.astro';
+import AboutCredentialsSection from '../organisms/AboutCredentialsSection.astro';
+import AboutRhythmsSection from '../organisms/AboutRhythmsSection.astro';
+import HowToWorkSection from '../organisms/HowToWorkSection.astro';
+import SiteFooter from '../organisms/SiteFooter.astro';
+
+interface Props {
+	navItems: NavItem[];
+	aboutHeroData: {
+		label: string;
+		title: string;
+		description: string;
+		image: string;
+		imageAlt: string;
+	};
+	missionData: {
+		left: string;
+		rightLabel: string;
+		right: string;
+	};
+	meetData: {
+		label: string;
+		title: string;
+		description: string;
+		image: string;
+		imageAlt: string;
+	};
+	approachItems: { title: string }[];
+	aboutQuoteData: {
+		image: string;
+		imageAlt: string;
+		quote: string;
+		author: string;
+	};
+	credentialsData: {
+		label: string;
+		title: string;
+		copy: string;
+		items: string[];
+		image: string;
+		imageAlt: string;
+	};
+	rhythmsIntro: {
+		title: string;
+		description: string;
+	};
+	rhythmItems: RhythmItem[];
+	workItems: WorkItem[];
+	footerData: {
+		name: string;
+		founder: string;
+		email: string;
+		instagram: string;
+	};
+}
+
+const {
+	navItems,
+	aboutHeroData,
+	missionData,
+	meetData,
+	approachItems,
+	aboutQuoteData,
+	credentialsData,
+	rhythmsIntro,
+	rhythmItems,
+	workItems,
+	footerData
+} = Astro.props;
+---
+
+<SiteHeader navItems={navItems} />
+<main>
+	<AboutHeroSection {...aboutHeroData} />
+	<AboutMissionSection {...missionData} />
+	<AboutMeetSection {...meetData} />
+	<ApproachStripSection items={approachItems} />
+	<AboutQuoteSection {...aboutQuoteData} />
+	<AboutCredentialsSection {...credentialsData} />
+	<AboutRhythmsSection title={rhythmsIntro.title} description={rhythmsIntro.description} items={rhythmItems} />
+	<HowToWorkSection items={workItems} />
+</main>
+<SiteFooter {...footerData} />

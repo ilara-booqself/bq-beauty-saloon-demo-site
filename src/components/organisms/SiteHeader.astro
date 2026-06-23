@@ -1,0 +1,33 @@
+---
+// Site header organism combines brand logo and navigation controls.
+import type { NavItem } from '../../data/landing';
+import LogoMark from '../atoms/LogoMark.astro';
+import HeaderNav from '../molecules/HeaderNav.astro';
+
+interface Props {
+	navItems: NavItem[];
+}
+
+const { navItems } = Astro.props;
+---
+
+<header id="top" class="site-header">
+	<div class="container site-header__inner">
+		<LogoMark />
+		<HeaderNav links={navItems} />
+	</div>
+</header>
+
+<style>
+	.site-header {
+		background: color-mix(in srgb, var(--color-cream) 94%, white);
+		border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+	}
+
+	.site-header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-block: 0.45rem;
+	}
+</style>
